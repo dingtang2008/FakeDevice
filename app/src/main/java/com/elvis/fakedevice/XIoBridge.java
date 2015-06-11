@@ -67,6 +67,9 @@ public class XIoBridge extends XHook {
 	@Override
 	@SuppressLint("SdCardPath")
 	protected void before(XParam param) throws Throwable {
+		int pre_uid = Binder.getCallingUid();
+		if(pre_uid==Process.SYSTEM_UID) return;
+		Log.e("dingtangtest","before method="+mMethod+"pre_uid="+pre_uid+"process.SYSTEM_UID="+Process.SYSTEM_UID);
 		if (mMethod == Methods.connect) {
 			if (param.args.length > 2 && param.args[1] instanceof InetAddress && param.args[2] instanceof Integer) {
 				InetAddress address = (InetAddress) param.args[1];

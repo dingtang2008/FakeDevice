@@ -53,7 +53,7 @@ public class XGoogleApiClient extends XHook {
 //				if (PrivacyManager.getTransient(clazz.getName(), null) == null) {
 //					PrivacyManager.setTransient(clazz.getName(), Boolean.toString(true));
 
-					XPrivacy.hookAll(XConnectionCallbacks.getInstances(param.args[0]), clazz.getClassLoader(),
+					XFakeManager.hookAll(XConnectionCallbacks.getInstances(param.args[0]), clazz.getClassLoader(),
 							getSecret(), true);
 			//	}
 			}

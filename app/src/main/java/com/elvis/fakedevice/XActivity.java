@@ -138,7 +138,7 @@ public class XActivity extends XHook {
 			if (param.args.length > 0 && param.args[0] instanceof String && param.getResult() != null) {
 				String name = (String) param.args[0];
 				Object instance = param.getResult();
-				XPrivacy.handleGetSystemService(name, instance.getClass().getName(), getSecret());
+				XFakeManager.handleGetSystemService(name, instance.getClass().getName(), getSecret());
 			}
 	}
 }

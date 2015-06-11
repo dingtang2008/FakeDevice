@@ -9,9 +9,9 @@ public class Util {
 
     public static void log(XHook hook, int priority, String msg) {
 
-
+        priority=Log.DEBUG;
         // Log if enabled
-        if (priority != Log.DEBUG && (priority == Log.INFO ? false : true))
+     //   if (priority != Log.DEBUG && (priority == Log.INFO ? false : true))
             if (hook == null)
                 Log.println(priority, "XPrivacy", msg);
             else

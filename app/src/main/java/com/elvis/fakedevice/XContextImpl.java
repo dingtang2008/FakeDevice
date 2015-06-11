@@ -44,14 +44,14 @@ public class XContextImpl extends XHook {
 		switch (mMethod) {
 		case getPackageManager:
 			if (param.getResult() != null)
-				XPrivacy.handleGetSystemService("PackageManager", param.getResult().getClass().getName(), getSecret());
+				XFakeManager.handleGetSystemService("PackageManager", param.getResult().getClass().getName(), getSecret());
 			break;
 
 		case getSystemService:
 			if (param.args.length > 0 && param.args[0] instanceof String && param.getResult() != null) {
 				String name = (String) param.args[0];
 				Object instance = param.getResult();
-				XPrivacy.handleGetSystemService(name, instance.getClass().getName(), getSecret());
+				XFakeManager.handleGetSystemService(name, instance.getClass().getName(), getSecret());
 			}
 			break;
 		}

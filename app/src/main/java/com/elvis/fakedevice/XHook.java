@@ -1,7 +1,8 @@
 package com.elvis.fakedevice;
 
 import android.annotation.SuppressLint;
-import android.os.Binder;
+import android.os.*;
+import android.util.Log;
 
 public abstract class XHook {
 	private String mRestrictionName;
@@ -51,68 +52,82 @@ public abstract class XHook {
 
 	protected boolean isRestrictedExtra(XParam param, String extra) throws Throwable {
 		int uid = Binder.getCallingUid();
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, getSpecifier(), extra, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID1=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, getSpecifier(), extra, mSecret);
 	}
 
 	protected boolean isRestrictedExtra(XParam param, String methodName, String extra) throws Throwable {
 		int uid = Binder.getCallingUid();
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, methodName, extra, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID2=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, methodName, extra, mSecret);
 	}
 
 	protected boolean isRestrictedExtra(XParam param, String restrictionName, String methodName, String extra)
 			throws Throwable {
 		int uid = Binder.getCallingUid();
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, extra, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID3=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, extra, mSecret);
 	}
 
 	protected boolean isRestrictedExtra(int uid, String restrictionName, String methodName, String extra)
 			throws Throwable {
-		return true;// PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, extra, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID4=" + android.os.Process.SYSTEM_UID);
+		return false;// PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, extra, mSecret);
 	}
 
 	protected boolean isRestrictedValue(int uid, String value) throws Throwable {
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, getSpecifier(), null, value, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID5=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, getSpecifier(), null, value, mSecret);
 	}
 
 	protected boolean isRestrictedValue(XParam param, String value) throws Throwable {
 		int uid = Binder.getCallingUid();
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, getSpecifier(), null, value, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID6=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, getSpecifier(), null, value, mSecret);
 	}
 
 	protected boolean isRestrictedValue(int uid, String methodName, String value) throws Throwable {
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, methodName, null, value, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID7=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, mRestrictionName, methodName, null, value, mSecret);
 	}
 
 	protected boolean isRestrictedValue(int uid, String restrictionName, String methodName, String value)
 			throws Throwable {
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, null, value, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID8=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, null, value, mSecret);
 	}
 
 	protected boolean isRestrictedExtraValue(int uid, String restrictionName, String methodName, String extra,
 			String value) throws Throwable {
-		return true;//PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, extra, value, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID9=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestrictionExtra(this, uid, restrictionName, methodName, extra, value, mSecret);
 	}
 
 	protected boolean isRestricted(XParam param, String methodName) throws Throwable {
 		int uid = Binder.getCallingUid();
-		return true;//PrivacyManager.getRestriction(this, uid, mRestrictionName, methodName, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID10=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestriction(this, uid, mRestrictionName, methodName, mSecret);
 	}
 
 	protected boolean isRestricted(XParam param, String restrictionName, String methodName) throws Throwable {
+		Log.e("dingtangtest", "Process.SYSTEM_UID11=" + android.os.Process.SYSTEM_UID);
 		int uid = Binder.getCallingUid();
-		return true;//PrivacyManager.getRestriction(this, uid, restrictionName, methodName, mSecret);
+		return false;//PrivacyManager.getRestriction(this, uid, restrictionName, methodName, mSecret);
 	}
 
 	protected boolean getRestricted(int uid) throws Throwable {
-		return true;//PrivacyManager.getRestriction(this, uid, mRestrictionName, getSpecifier(), mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID12=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestriction(this, uid, mRestrictionName, getSpecifier(), mSecret);
 	}
 
 	protected boolean getRestricted(int uid, String methodName) throws Throwable {
-		return true;//PrivacyManager.getRestriction(this, uid, mRestrictionName, methodName, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID13=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestriction(this, uid, mRestrictionName, methodName, mSecret);
 	}
 
 	protected boolean getRestricted(int uid, String restrictionName, String methodName) throws Throwable {
-		return true;//PrivacyManager.getRestriction(this, uid, restrictionName, methodName, mSecret);
+		Log.e("dingtangtest", "Process.SYSTEM_UID14=" + android.os.Process.SYSTEM_UID);
+		return false;//PrivacyManager.getRestriction(this, uid, restrictionName, methodName, mSecret);
 	}
 
 	@Override

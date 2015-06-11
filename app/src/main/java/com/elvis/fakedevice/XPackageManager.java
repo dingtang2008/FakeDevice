@@ -399,7 +399,7 @@ public class XPackageManager extends XHook {
 		if (blacklist)
 			allowed = !allowed;
 		if (allowed)
-			Util.log(null, Log.INFO, "Allowing package=" + packageName);
+			Util.log(null, Log.INFO, "Allowing package=" + packageName+"uid="+uid);
 		return allowed;
 	}
 }

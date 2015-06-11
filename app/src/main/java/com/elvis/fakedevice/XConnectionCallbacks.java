@@ -55,7 +55,7 @@ public class XConnectionCallbacks extends XHook {
 				//	PrivacyManager.setTransient(fusedLocationApi.getClass().getName(), Boolean.toString(true));
 
 					if (fusedLocationApi != null)
-						XPrivacy.hookAll(XFusedLocationApi.getInstances(fusedLocationApi), loader, getSecret(), true);
+						XFakeManager.hookAll(XFusedLocationApi.getInstances(fusedLocationApi), loader, getSecret(), true);
 				//}//
 			} catch (ClassNotFoundException ex) {
 				Util.log(this, Log.WARN, ex.toString());
@@ -73,7 +73,7 @@ public class XConnectionCallbacks extends XHook {
 				//	PrivacyManager.setTransient(activityRecognitionApi.getClass().getName(), Boolean.toString(true));
 
 					if (activityRecognitionApi != null)
-						XPrivacy.hookAll(XActivityRecognitionApi.getInstances(activityRecognitionApi), loader,
+						XFakeManager.hookAll(XActivityRecognitionApi.getInstances(activityRecognitionApi), loader,
 								getSecret(), true);
 				//}
 			} catch (ClassNotFoundException ex) {
@@ -92,7 +92,7 @@ public class XConnectionCallbacks extends XHook {
 				//	PrivacyManager.setTransient(appIndexApi.getClass().getName(), Boolean.toString(true));
 
 					if (appIndexApi != null)
-						XPrivacy.hookAll(XAppIndexApi.getInstances(appIndexApi), loader, getSecret(), true);
+						XFakeManager.hookAll(XAppIndexApi.getInstances(appIndexApi), loader, getSecret(), true);
 				//}
 			} catch (ClassNotFoundException ex) {
 				Util.log(this, Log.WARN, ex.toString());
@@ -110,7 +110,7 @@ public class XConnectionCallbacks extends XHook {
 				//	PrivacyManager.setTransient(placeDetectionApi.getClass().getName(), Boolean.toString(true));
 
 					if (placeDetectionApi != null)
-						XPrivacy.hookAll(XPlaceDetectionApi.getInstances(placeDetectionApi), loader, getSecret(), true);
+						XFakeManager.hookAll(XPlaceDetectionApi.getInstances(placeDetectionApi), loader, getSecret(), true);
 				//}
 			} catch (ClassNotFoundException ex) {
 				Util.log(this, Log.WARN, ex.toString());

@@ -35,505 +35,313 @@ import java.util.Collections;
 import java.util.List;
 
 public class ActivitySettings extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener {
-	private int userId;
-	private int uid;
-	private boolean isApp;
-	private boolean odSystem;
-	private boolean expert;
+    private int userId;
+    private int uid;
+    private boolean isApp;
+    private boolean odSystem;
+    private boolean expert;
 
-	private CheckBox cbNotify;
-	private CheckBox cbOnDemand;
-	private CheckBox cbBlacklist;
-	private CheckBox cbUsage;
-	private CheckBox cbParameters;
-	private CheckBox cbValues;
-	private CheckBox cbLog;
-	private CheckBox cbSystem;
-	private CheckBox cbExperimental;
-	private CheckBox cbHttps;
-	private CheckBox cbAOSP;
-	private EditText etConfidence;
-	private EditText etQuirks;
-	private Button btnFlush;
-	private Button btnClearDb;
-	private CheckBox cbRandom;
-	private EditText etSerial;
-	private EditText etLat;
-	private EditText etLon;
-	private EditText etAlt;
-	private EditText etSearch;
-	private EditText etMac;
-	private EditText etIP;
-	private EditText etImei;
-	private EditText etPhone;
-	private EditText etId;
-	private EditText etGsfId;
-	private EditText etAdId;
-	private EditText etMcc;
-	private EditText etMnc;
-	private EditText etCountry;
-	private EditText etOperator;
-	private EditText etIccId;
-	private EditText etCid;
-	private EditText etLac;
-	private EditText etSubscriber;
-	private EditText etSSID;
-	private EditText etUa;
-	private CheckBox cbSerial;
-	private CheckBox cbLat;
-	private CheckBox cbLon;
-	private CheckBox cbAlt;
-	private CheckBox cbMac;
-	private CheckBox cbImei;
-	private CheckBox cbPhone;
-	private CheckBox cbId;
-	private CheckBox cbGsfId;
-	private CheckBox cbAdId;
-	private CheckBox cbCountry;
-	private CheckBox cbSubscriber;
-	private CheckBox cbSSID;
 
-	public static final String ACTION_SETTINGS = "biz.bokhorst.xprivacy.action.SETTINGS";
-	public static final String cUid = "Uid";
+    private Button btnFlush;
+    private Button btnClearDb;
+    private CheckBox cbRandom;
+    private EditText etSerial;
+    private EditText etLat;
+    private EditText etLon;
+    private EditText etAlt;
+    private EditText etSearch;
+    private EditText etMac;
+    private EditText etIP;
+    private EditText etImei;
+    private EditText etPhone;
+    private EditText etId;
+    private EditText etGsfId;
+    private EditText etAdId;
+    private EditText etMcc;
+    private EditText etMnc;
+    private EditText etCountry;
+    private EditText etOperator;
+    private EditText etIccId;
+    private EditText etCid;
+    private EditText etLac;
+    private EditText etSubscriber;
+    private EditText etSSID;
+    private EditText etUa;
+    private CheckBox cbSerial;
+    private CheckBox cbLat;
+    private CheckBox cbLon;
+    private CheckBox cbAlt;
+    private CheckBox cbMac;
+    private CheckBox cbImei;
+    private CheckBox cbPhone;
+    private CheckBox cbId;
+    private CheckBox cbGsfId;
+    private CheckBox cbAdId;
+    private CheckBox cbCountry;
+    private CheckBox cbSubscriber;
+    private CheckBox cbSSID;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    public static final String ACTION_SETTINGS = "biz.bokhorst.xprivacy.action.SETTINGS";
+    public static final String cUid = "Uid";
 
-		setContentView(R.layout.settings);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.settings);
 //		setSupportActionBar((Toolbar) findViewById(R.id.widgetToolbar));
-		setTitle(R.string.menu_settings);
-
-		userId = 0;//Util.getUserId(Process.myUid());
-
-		final Bundle extras = getIntent().getExtras();
-		if (extras != null && extras.containsKey(cUid))
-			uid = extras.getInt(cUid);
-		else
-			uid = userId;
-
-		// Reference controls
-		TextView tvInfo = (TextView) findViewById(R.id.tvInfo);
-
-		cbNotify = (CheckBox) findViewById(R.id.cbNotify);
-		cbOnDemand = (CheckBox) findViewById(R.id.cbOnDemand);
-		cbBlacklist = (CheckBox) findViewById(R.id.cbBlacklist);
-		cbUsage = (CheckBox) findViewById(R.id.cbUsage);
-		cbParameters = (CheckBox) findViewById(R.id.cbParameters);
-		cbValues = (CheckBox) findViewById(R.id.cbValues);
-		cbLog = (CheckBox) findViewById(R.id.cbLog);
-
-		CheckBox cbExpert = (CheckBox) findViewById(R.id.cbExpert);
-		cbSystem = (CheckBox) findViewById(R.id.cbSystem);
-		cbExperimental = (CheckBox) findViewById(R.id.cbExperimental);
-		cbHttps = (CheckBox) findViewById(R.id.cbHttps);
-		cbAOSP = (CheckBox) findViewById(R.id.cbAOSP);
-		LinearLayout llConfidence = (LinearLayout) findViewById(R.id.llConfidence);
-		etConfidence = (EditText) findViewById(R.id.etConfidence);
-		etQuirks = (EditText) findViewById(R.id.etQuirks);
-		btnFlush = (Button) findViewById(R.id.btnFlush);
-		btnClearDb = (Button) findViewById(R.id.btnClearDb);
-
-		cbRandom = (CheckBox) findViewById(R.id.cbRandom);
-		Button btnRandom = (Button) findViewById(R.id.btnRandom);
-		Button btnClear = (Button) findViewById(R.id.btnClear);
-
-		etSerial = (EditText) findViewById(R.id.etSerial);
-		etLat = (EditText) findViewById(R.id.etLat);
-		etLon = (EditText) findViewById(R.id.etLon);
-		etAlt = (EditText) findViewById(R.id.etAlt);
-		etSearch = (EditText) findViewById(R.id.etSearch);
-		Button btnSearch = (Button) findViewById(R.id.btnSearch);
-		etMac = (EditText) findViewById(R.id.etMac);
-		etIP = (EditText) findViewById(R.id.etIP);
-		etImei = (EditText) findViewById(R.id.etImei);
-		etPhone = (EditText) findViewById(R.id.etPhone);
-		etId = (EditText) findViewById(R.id.etId);
-		etGsfId = (EditText) findViewById(R.id.etGsfId);
-		etAdId = (EditText) findViewById(R.id.etAdId);
-		etMcc = (EditText) findViewById(R.id.etMcc);
-		etMnc = (EditText) findViewById(R.id.etMnc);
-		etCountry = (EditText) findViewById(R.id.etCountry);
-		etOperator = (EditText) findViewById(R.id.etOperator);
-		etIccId = (EditText) findViewById(R.id.etIccId);
-		etCid = (EditText) findViewById(R.id.etCid);
-		etLac = (EditText) findViewById(R.id.etLac);
-		etSubscriber = (EditText) findViewById(R.id.etSubscriber);
-		etSSID = (EditText) findViewById(R.id.etSSID);
-		etUa = (EditText) findViewById(R.id.etUa);
-
-		cbSerial = (CheckBox) findViewById(R.id.cbSerial);
-		cbLat = (CheckBox) findViewById(R.id.cbLat);
-		cbLon = (CheckBox) findViewById(R.id.cbLon);
-		cbAlt = (CheckBox) findViewById(R.id.cbAlt);
-		cbMac = (CheckBox) findViewById(R.id.cbMac);
-		cbImei = (CheckBox) findViewById(R.id.cbImei);
-		cbPhone = (CheckBox) findViewById(R.id.cbPhone);
-		cbId = (CheckBox) findViewById(R.id.cbId);
-		cbGsfId = (CheckBox) findViewById(R.id.cbGsfId);
-		cbAdId = (CheckBox) findViewById(R.id.cbAdId);
-		cbCountry = (CheckBox) findViewById(R.id.cbCountry);
-		cbSubscriber = (CheckBox) findViewById(R.id.cbSubscriber);
-		cbSSID = (CheckBox) findViewById(R.id.cbSSID);
-
-		// Listen for changes
-		cbParameters.setOnCheckedChangeListener(this);
-		cbValues.setOnCheckedChangeListener(this);
-		cbExpert.setOnCheckedChangeListener(this);
-		cbSerial.setOnCheckedChangeListener(this);
-		cbLat.setOnCheckedChangeListener(this);
-		cbLon.setOnCheckedChangeListener(this);
-		cbAlt.setOnCheckedChangeListener(this);
-		cbMac.setOnCheckedChangeListener(this);
-		cbImei.setOnCheckedChangeListener(this);
-		cbPhone.setOnCheckedChangeListener(this);
-		cbId.setOnCheckedChangeListener(this);
-		cbGsfId.setOnCheckedChangeListener(this);
-		cbAdId.setOnCheckedChangeListener(this);
-		cbCountry.setOnCheckedChangeListener(this);
-		cbSubscriber.setOnCheckedChangeListener(this);
-		cbSSID.setOnCheckedChangeListener(this);
-
-		// Get current values
-		boolean usage = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingUsage, true);
-		boolean parameters = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingParameters, false);
-		boolean values = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingValues, false);
-		boolean log = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingLog, false);
-
-		boolean components = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingSystem, false);
-		boolean experimental = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingExperimental, false);
-		boolean https = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingHttps, true);
-		boolean aosp = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingAOSPMode, false);
-		String confidence = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingConfidence, "");
-
-		// Get quirks
-		boolean freeze = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingFreeze, false);
-		boolean resolve = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingResolve, false);
-		boolean noresolve = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingNoResolve, false);
-		boolean permman = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingPermMan, false);
-		boolean iwall = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingIntentWall, false);
-		boolean safemode = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingSafeMode, false);
-		boolean test = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingTestVersions, false);
-		boolean updates = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingUpdates, false);
-		boolean odsystem = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingOnDemandSystem, false);
-		boolean wnomod = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingWhitelistNoModify, false);
-		boolean nousage = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingNoUsageData, false);
-		List<String> listQuirks = new ArrayList<String>();
-		if (freeze)
-			listQuirks.add("freeze");
-		if (resolve)
-			listQuirks.add("resolve");
-		if (noresolve)
-			listQuirks.add("noresolve");
-		if (permman)
-			listQuirks.add("permman");
-		if (iwall)
-			listQuirks.add("iwall");
-		if (safemode)
-			listQuirks.add("safemode");
-		if (test)
-			listQuirks.add("test");
-		if (updates)
-			listQuirks.add("updates");
-		if (odsystem)
-			listQuirks.add("odsystem");
-		if (wnomod)
-			listQuirks.add("wnomod");
-		if (nousage)
-			listQuirks.add("nousage");
-		Collections.sort(listQuirks);
-		String quirks = TextUtils.join(",", listQuirks.toArray());
-
-		expert = (components || experimental || !https || aosp || !"".equals(confidence) || listQuirks.size() > 0);
-
-		// Application specific
-		boolean notify = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingNotify, true);
-		boolean ondemand = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingOnDemand, uid == userId);
-		boolean blacklist = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingBlacklist, false);
-		boolean enabled = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingRestricted, true);
-
-		// Common
-		boolean random = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingRandom, false);
-		String serial = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingSerial, "");
-		String lat = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingLatitude, "");
-		String lon = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingLongitude, "");
-		String alt = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingAltitude, "");
-		String mac = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingMac, "");
-		String imei = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingImei, "");
-		String phone = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingPhone, "");
-		String id = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingId, "");
-		String gsfid = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingGsfId, "");
-		String adid = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingAdId, "");
-		String country = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingCountry, "");
-		String subscriber = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingSubscriber, "");
-		String ssid = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingSSID, "");
-
-		// Set current values
-		if (uid == userId) {
-			// Global settings
-			tvInfo.setVisibility(View.GONE);
-			cbUsage.setChecked(usage);
-			cbParameters.setChecked(parameters);
-			cbValues.setChecked(values);
-			if (userId == 0)
-				cbLog.setChecked(log);
-			else {
-				cbLog.setVisibility(View.GONE);
-				btnFlush.setVisibility(View.GONE);
-				btnClearDb.setVisibility(View.GONE);
-			}
-			cbExpert.setChecked(expert);
+        setTitle(R.string.menu_settings);
 
 
-			if (expert) {
-				cbSystem.setChecked(components);
-				cbExperimental.setChecked(experimental);
-				cbHttps.setChecked(https);
-				cbAOSP.setChecked(aosp);
-				etConfidence.setText(confidence);
-				etQuirks.setText(quirks);
-			} else {
-				cbSystem.setEnabled(false);
-				cbExperimental.setEnabled(false);
-				cbHttps.setEnabled(false);
-				cbHttps.setChecked(true);
-				cbAOSP.setEnabled(false);
-				cbAOSP.setChecked(false);
-				etConfidence.setEnabled(false);
-				etQuirks.setEnabled(false);
-				btnFlush.setEnabled(false);
-				btnClearDb.setEnabled(false);
-			}
-		} else {
-			// Display application names
-			//ApplicationInfoEx appInfo = new ApplicationInfoEx(this, uid);
-			//getSupportActionBar().setSubtitle(TextUtils.join(",  ", appInfo.getApplicationName()));
+        final Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.containsKey(cUid))
+            uid = extras.getInt(cUid);
+        else
+            uid = userId;
 
-			// Disable global settings
-			cbUsage.setVisibility(View.GONE);
-			cbParameters.setVisibility(View.GONE);
-			cbValues.setVisibility(View.GONE);
-			cbLog.setVisibility(View.GONE);
-			cbSystem.setVisibility(View.GONE);
-			cbExperimental.setVisibility(View.GONE);
-			cbHttps.setVisibility(View.GONE);
-			cbAOSP.setVisibility(View.GONE);
-			llConfidence.setVisibility(View.GONE);
-			btnFlush.setVisibility(View.GONE);
-			btnClearDb.setVisibility(View.GONE);
 
-			cbExpert.setChecked(expert);
-			if (expert)
-				etQuirks.setText(quirks);
-			else
-				etQuirks.setEnabled(false);
-		}
+        btnFlush = (Button) findViewById(R.id.btnFlush);
+        btnClearDb = (Button) findViewById(R.id.btnClearDb);
 
-		boolean gnotify = PrivacyManager.getSettingBool(userId, PrivacyManager.cSettingNotify, true);
-		if (uid == userId || gnotify)
-			cbNotify.setChecked(notify);
-		else
-			cbNotify.setVisibility(View.GONE);
+        cbRandom = (CheckBox) findViewById(R.id.cbRandom);
+        Button btnRandom = (Button) findViewById(R.id.btnRandom);
+        Button btnClear = (Button) findViewById(R.id.btnClear);
 
-		//isApp = PrivacyManager.isApplication(uid);
-		odSystem = PrivacyManager.getSettingBool(userId, PrivacyManager.cSettingOnDemandSystem, false);
-		boolean gondemand = PrivacyManager.getSettingBool(userId, PrivacyManager.cSettingOnDemand, true);
-		if (uid == userId || ((isApp || odSystem) && gondemand)) {
-			cbOnDemand.setChecked(ondemand);
-			cbOnDemand.setEnabled(enabled);
-		} else
-			cbOnDemand.setVisibility(View.GONE);
+        etSerial = (EditText) findViewById(R.id.etSerial);
+        etLat = (EditText) findViewById(R.id.etLat);
+        etLon = (EditText) findViewById(R.id.etLon);
+        etAlt = (EditText) findViewById(R.id.etAlt);
+        etSearch = (EditText) findViewById(R.id.etSearch);
+        Button btnSearch = (Button) findViewById(R.id.btnSearch);
+        etMac = (EditText) findViewById(R.id.etMac);
+        etIP = (EditText) findViewById(R.id.etIP);
+        etImei = (EditText) findViewById(R.id.etImei);
+        etPhone = (EditText) findViewById(R.id.etPhone);
+        etId = (EditText) findViewById(R.id.etId);
+        etGsfId = (EditText) findViewById(R.id.etGsfId);
+        etAdId = (EditText) findViewById(R.id.etAdId);
+        etMcc = (EditText) findViewById(R.id.etMcc);
+        etMnc = (EditText) findViewById(R.id.etMnc);
+        etCountry = (EditText) findViewById(R.id.etCountry);
+        etOperator = (EditText) findViewById(R.id.etOperator);
+        etIccId = (EditText) findViewById(R.id.etIccId);
+        etCid = (EditText) findViewById(R.id.etCid);
+        etLac = (EditText) findViewById(R.id.etLac);
+        etSubscriber = (EditText) findViewById(R.id.etSubscriber);
+        etSSID = (EditText) findViewById(R.id.etSSID);
+        etUa = (EditText) findViewById(R.id.etUa);
 
-		String blFileName = Environment.getExternalStorageDirectory().getPath() + "/.xprivacy/blacklist";
-		if (uid == userId || !new File(blFileName).exists())
-			cbBlacklist.setVisibility(View.GONE);
-		else
-			cbBlacklist.setChecked(blacklist);
+        cbSerial = (CheckBox) findViewById(R.id.cbSerial);
+        cbLat = (CheckBox) findViewById(R.id.cbLat);
+        cbLon = (CheckBox) findViewById(R.id.cbLon);
+        cbAlt = (CheckBox) findViewById(R.id.cbAlt);
+        cbMac = (CheckBox) findViewById(R.id.cbMac);
+        cbImei = (CheckBox) findViewById(R.id.cbImei);
+        cbPhone = (CheckBox) findViewById(R.id.cbPhone);
+        cbId = (CheckBox) findViewById(R.id.cbId);
+        cbGsfId = (CheckBox) findViewById(R.id.cbGsfId);
+        cbAdId = (CheckBox) findViewById(R.id.cbAdId);
+        cbCountry = (CheckBox) findViewById(R.id.cbCountry);
+        cbSubscriber = (CheckBox) findViewById(R.id.cbSubscriber);
+        cbSSID = (CheckBox) findViewById(R.id.cbSSID);
 
-		// Common
-		cbRandom.setChecked(random);
+        // Listen for changes
 
-		// Set randomize on access check boxes
-		cbSerial.setChecked(serial.equals(PrivacyManager.cValueRandom));
-		cbLat.setChecked(lat.equals(PrivacyManager.cValueRandom));
-		cbLon.setChecked(lon.equals(PrivacyManager.cValueRandom));
-		cbAlt.setChecked(alt.equals(PrivacyManager.cValueRandom));
-		cbMac.setChecked(mac.equals(PrivacyManager.cValueRandom));
-		cbImei.setChecked(imei.equals(PrivacyManager.cValueRandom));
-		cbPhone.setChecked(phone.equals(PrivacyManager.cValueRandom));
-		cbId.setChecked(id.equals(PrivacyManager.cValueRandom));
-		cbGsfId.setChecked(gsfid.equals(PrivacyManager.cValueRandom));
-		cbAdId.setChecked(adid.equals(PrivacyManager.cValueRandom));
-		cbCountry.setChecked(country.equals(PrivacyManager.cValueRandom));
-		cbSubscriber.setChecked(subscriber.equals(PrivacyManager.cValueRandom));
-		cbSSID.setChecked(ssid.equals(PrivacyManager.cValueRandom));
+        cbSerial.setOnCheckedChangeListener(this);
+        cbLat.setOnCheckedChangeListener(this);
+        cbLon.setOnCheckedChangeListener(this);
+        cbAlt.setOnCheckedChangeListener(this);
+        cbMac.setOnCheckedChangeListener(this);
+        cbImei.setOnCheckedChangeListener(this);
+        cbPhone.setOnCheckedChangeListener(this);
+        cbId.setOnCheckedChangeListener(this);
+        cbGsfId.setOnCheckedChangeListener(this);
+        cbAdId.setOnCheckedChangeListener(this);
+        cbCountry.setOnCheckedChangeListener(this);
+        cbSubscriber.setOnCheckedChangeListener(this);
+        cbSSID.setOnCheckedChangeListener(this);
 
-		// Set fake values
-		etSerial.setText(cbSerial.isChecked() ? "" : serial);
-		etLat.setText(cbLat.isChecked() ? "" : lat);
-		etLon.setText(cbLon.isChecked() ? "" : lon);
-		etAlt.setText(cbAlt.isChecked() ? "" : alt);
-		etMac.setText(cbMac.isChecked() ? "" : mac);
-		etImei.setText(cbImei.isChecked() ? "" : imei);
-		etPhone.setText(cbPhone.isChecked() ? "" : phone);
-		etId.setText(cbId.isChecked() ? "" : id);
-		etGsfId.setText(cbGsfId.isChecked() ? "" : gsfid);
-		etAdId.setText(cbAdId.isChecked() ? "" : adid);
-		etCountry.setText(cbCountry.isChecked() ? "" : country);
-		etSubscriber.setText(cbSubscriber.isChecked() ? "" : subscriber);
-		etSSID.setText(cbSSID.isChecked() ? "" : ssid);
 
-		etSerial.setEnabled(!cbSerial.isChecked());
-		etLat.setEnabled(!cbLat.isChecked());
-		etLon.setEnabled(!cbLon.isChecked());
-		etAlt.setEnabled(!cbAlt.isChecked());
 
-		etSearch.setEnabled(Geocoder.isPresent());
-		btnSearch.setEnabled(Geocoder.isPresent());
+        // Common
+        boolean random = PrivacyManager.getSettingBool(-uid, PrivacyManager.cSettingRandom, false);
+        String serial = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingSerial, "");
+        String lat = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingLatitude, "");
+        String lon = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingLongitude, "");
+        String alt = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingAltitude, "");
+        String mac = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingMac, "");
+        String imei = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingImei, "");
+        String phone = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingPhone, "");
+        String id = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingId, "");
+        String gsfid = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingGsfId, "");
+        String adid = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingAdId, "");
+        String country = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingCountry, "");
+        String subscriber = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingSubscriber, "");
+        String ssid = PrivacyManager.getSetting(-uid, PrivacyManager.cSettingSSID, "");
 
-		etMac.setEnabled(!cbMac.isChecked());
-		etImei.setEnabled(!cbImei.isChecked());
-		etPhone.setEnabled(!cbPhone.isChecked());
-		etId.setEnabled(!cbId.isChecked());
-		etGsfId.setEnabled(!cbGsfId.isChecked());
-		etAdId.setEnabled(!cbAdId.isChecked());
-		etCountry.setEnabled(!cbCountry.isChecked());
-		etSubscriber.setEnabled(!cbSubscriber.isChecked());
-		etSSID.setEnabled(!cbSSID.isChecked());
 
-		etIP.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingIP, ""));
-		etMcc.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingMcc, ""));
-		etMnc.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingMnc, ""));
-		etOperator.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingOperator, ""));
-		etIccId.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingIccId, ""));
-		etCid.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingCid, ""));
-		etLac.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingLac, ""));
-		etUa.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingUa, ""));
 
-		btnFlush.setOnClickListener(this);
-		btnClearDb.setOnClickListener(this);
-		btnRandom.setOnClickListener(this);
-		btnClear.setOnClickListener(this);
-		btnSearch.setOnClickListener(this);
-	}
+        //isApp = PrivacyManager.isApplication(uid);
+        odSystem = PrivacyManager.getSettingBool(userId, PrivacyManager.cSettingOnDemandSystem, false);
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		if (inflater != null /*&& PrivacyService.checkClient()*/) {
-			inflater.inflate(R.menu.settings, menu);
-			return true;
-		} else
-			return false;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_cancel:
-			finish();
-			return true;
-		case R.id.menu_save:
-			optionSave();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+        // Common
+        cbRandom.setChecked(random);
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		switch (buttonView.getId()) {
-		case R.id.cbParameters:
-		case R.id.cbValues:
-//			if (isChecked && Util.hasProLicense(this) == null) {
-//				buttonView.setChecked(false);
-//				Util.viewUri(this, ActivityMain.cProUri);
-//			}
-			break;
-		case R.id.cbExpert:
-			cbSystem.setEnabled(isChecked);
-			cbExperimental.setEnabled(isChecked);
-			cbHttps.setEnabled(isChecked);
-			cbAOSP.setEnabled(isChecked);
-			etConfidence.setEnabled(isChecked);
-			etQuirks.setEnabled(isChecked);
-			btnFlush.setEnabled(isChecked);
-			btnClearDb.setEnabled(isChecked);
-			if (isChecked) {
-				if (!expert)
-					Toast.makeText(this, "getString(R.string.msg_expert)", Toast.LENGTH_LONG).show();
-			} else {
-				cbSystem.setChecked(false);
-				cbExperimental.setChecked(false);
-				cbHttps.setChecked(true);
-				cbAOSP.setChecked(false);
-				etConfidence.setText("");
-				etQuirks.setText("");
-			}
-			break;
-		case R.id.cbSerial:
-			etSerial.setEnabled(!isChecked);
-			break;
-		case R.id.cbLat:
-			etLat.setEnabled(!isChecked);
-			break;
-		case R.id.cbLon:
-			etLon.setEnabled(!isChecked);
-			break;
-		case R.id.cbAlt:
-			etAlt.setEnabled(!isChecked);
-			break;
-		case R.id.cbMac:
-			etMac.setEnabled(!isChecked);
-			break;
-		case R.id.cbImei:
-			etImei.setEnabled(!isChecked);
-			break;
-		case R.id.cbPhone:
-			etPhone.setEnabled(!isChecked);
-			break;
-		case R.id.cbId:
-			etId.setEnabled(!isChecked);
-			break;
-		case R.id.cbGsfId:
-			etGsfId.setEnabled(!isChecked);
-			break;
-		case R.id.cbAdId:
-			etAdId.setEnabled(!isChecked);
-			break;
-		case R.id.cbCountry:
-			etCountry.setEnabled(!isChecked);
-			break;
-		case R.id.cbSubscriber:
-			etSubscriber.setEnabled(!isChecked);
-			break;
-		case R.id.cbSSID:
-			etSSID.setEnabled(!isChecked);
-			break;
-		}
-	}
+        // Set randomize on access check boxes
+        cbSerial.setChecked(serial.equals(PrivacyManager.cValueRandom));
+        cbLat.setChecked(lat.equals(PrivacyManager.cValueRandom));
+        cbLon.setChecked(lon.equals(PrivacyManager.cValueRandom));
+        cbAlt.setChecked(alt.equals(PrivacyManager.cValueRandom));
+        cbMac.setChecked(mac.equals(PrivacyManager.cValueRandom));
+        cbImei.setChecked(imei.equals(PrivacyManager.cValueRandom));
+        cbPhone.setChecked(phone.equals(PrivacyManager.cValueRandom));
+        cbId.setChecked(id.equals(PrivacyManager.cValueRandom));
+        cbGsfId.setChecked(gsfid.equals(PrivacyManager.cValueRandom));
+        cbAdId.setChecked(adid.equals(PrivacyManager.cValueRandom));
+        cbCountry.setChecked(country.equals(PrivacyManager.cValueRandom));
+        cbSubscriber.setChecked(subscriber.equals(PrivacyManager.cValueRandom));
+        cbSSID.setChecked(ssid.equals(PrivacyManager.cValueRandom));
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.btnFlush:
-			//flush();
-			break;
-		case R.id.btnClearDb:
-			//clearDB();
-			break;
-		case R.id.btnRandom:
-			randomize();
-			break;
-		case R.id.btnClear:
-			clear();
-			break;
-		case R.id.btnSearch:
-			search();
-			break;
-		}
-	}
+        // Set fake values
+        etSerial.setText(cbSerial.isChecked() ? "" : serial);
+        etLat.setText(cbLat.isChecked() ? "" : lat);
+        etLon.setText(cbLon.isChecked() ? "" : lon);
+        etAlt.setText(cbAlt.isChecked() ? "" : alt);
+        etMac.setText(cbMac.isChecked() ? "" : mac);
+        etImei.setText(cbImei.isChecked() ? "" : imei);
+        etPhone.setText(cbPhone.isChecked() ? "" : phone);
+        etId.setText(cbId.isChecked() ? "" : id);
+        etGsfId.setText(cbGsfId.isChecked() ? "" : gsfid);
+        etAdId.setText(cbAdId.isChecked() ? "" : adid);
+        etCountry.setText(cbCountry.isChecked() ? "" : country);
+        etSubscriber.setText(cbSubscriber.isChecked() ? "" : subscriber);
+        etSSID.setText(cbSSID.isChecked() ? "" : ssid);
+
+        etSerial.setEnabled(!cbSerial.isChecked());
+        etLat.setEnabled(!cbLat.isChecked());
+        etLon.setEnabled(!cbLon.isChecked());
+        etAlt.setEnabled(!cbAlt.isChecked());
+
+        etSearch.setEnabled(Geocoder.isPresent());
+        btnSearch.setEnabled(Geocoder.isPresent());
+
+        etMac.setEnabled(!cbMac.isChecked());
+        etImei.setEnabled(!cbImei.isChecked());
+        etPhone.setEnabled(!cbPhone.isChecked());
+        etId.setEnabled(!cbId.isChecked());
+        etGsfId.setEnabled(!cbGsfId.isChecked());
+        etAdId.setEnabled(!cbAdId.isChecked());
+        etCountry.setEnabled(!cbCountry.isChecked());
+        etSubscriber.setEnabled(!cbSubscriber.isChecked());
+        etSSID.setEnabled(!cbSSID.isChecked());
+
+        etIP.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingIP, ""));
+        etMcc.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingMcc, ""));
+        etMnc.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingMnc, ""));
+        etOperator.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingOperator, ""));
+        etIccId.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingIccId, ""));
+        etCid.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingCid, ""));
+        etLac.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingLac, ""));
+        etUa.setText(PrivacyManager.getSetting(-uid, PrivacyManager.cSettingUa, ""));
+
+        btnFlush.setOnClickListener(this);
+        btnClearDb.setOnClickListener(this);
+        btnRandom.setOnClickListener(this);
+        btnClear.setOnClickListener(this);
+        btnSearch.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        if (inflater != null /*&& PrivacyService.checkClient()*/) {
+            inflater.inflate(R.menu.settings, menu);
+            return true;
+        } else
+            return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_cancel:
+                finish();
+                return true;
+            case R.id.menu_save:
+                optionSave();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+
+            case R.id.cbSerial:
+                etSerial.setEnabled(!isChecked);
+                break;
+            case R.id.cbLat:
+                etLat.setEnabled(!isChecked);
+                break;
+            case R.id.cbLon:
+                etLon.setEnabled(!isChecked);
+                break;
+            case R.id.cbAlt:
+                etAlt.setEnabled(!isChecked);
+                break;
+            case R.id.cbMac:
+                etMac.setEnabled(!isChecked);
+                break;
+            case R.id.cbImei:
+                etImei.setEnabled(!isChecked);
+                break;
+            case R.id.cbPhone:
+                etPhone.setEnabled(!isChecked);
+                break;
+            case R.id.cbId:
+                etId.setEnabled(!isChecked);
+                break;
+            case R.id.cbGsfId:
+                etGsfId.setEnabled(!isChecked);
+                break;
+            case R.id.cbAdId:
+                etAdId.setEnabled(!isChecked);
+                break;
+            case R.id.cbCountry:
+                etCountry.setEnabled(!isChecked);
+                break;
+            case R.id.cbSubscriber:
+                etSubscriber.setEnabled(!isChecked);
+                break;
+            case R.id.cbSSID:
+                etSSID.setEnabled(!isChecked);
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnFlush:
+                //flush();
+                break;
+            case R.id.btnClearDb:
+                //clearDB();
+                break;
+            case R.id.btnRandom:
+                randomize();
+                break;
+            case R.id.btnClear:
+                clear();
+                break;
+            case R.id.btnSearch:
+                search();
+                break;
+        }
+    }
 
 //	private void clearDB() {
 //		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ActivitySettings.this);
@@ -562,66 +370,66 @@ public class ActivitySettings extends AppCompatActivity implements OnCheckedChan
 //		alertDialog.show();
 //	}
 
-	private void randomize() {
-		etSerial.setText(PrivacyManager.getRandomProp("SERIAL"));
-		etLat.setText(PrivacyManager.getRandomProp("LAT"));
-		etLon.setText(PrivacyManager.getRandomProp("LON"));
-		etAlt.setText(PrivacyManager.getRandomProp("ALT"));
-		etMac.setText(PrivacyManager.getRandomProp("MAC"));
-		etImei.setText(PrivacyManager.getRandomProp("IMEI"));
-		etPhone.setText(PrivacyManager.getRandomProp("PHONE"));
-		etId.setText(PrivacyManager.getRandomProp("ANDROID_ID"));
-		etGsfId.setText(PrivacyManager.getRandomProp("GSF_ID"));
-		etAdId.setText(PrivacyManager.getRandomProp("AdvertisingId"));
-		etCountry.setText(PrivacyManager.getRandomProp("ISO3166"));
-		etSubscriber.setText(PrivacyManager.getRandomProp("SubscriberId"));
-		etSSID.setText(PrivacyManager.getRandomProp("SSID"));
-	}
+    private void randomize() {
+        etSerial.setText(PrivacyManager.getRandomProp("SERIAL"));
+        etLat.setText(PrivacyManager.getRandomProp("LAT"));
+        etLon.setText(PrivacyManager.getRandomProp("LON"));
+        etAlt.setText(PrivacyManager.getRandomProp("ALT"));
+        etMac.setText(PrivacyManager.getRandomProp("MAC"));
+        etImei.setText(PrivacyManager.getRandomProp("IMEI"));
+        etPhone.setText(PrivacyManager.getRandomProp("PHONE"));
+        etId.setText(PrivacyManager.getRandomProp("ANDROID_ID"));
+        etGsfId.setText(PrivacyManager.getRandomProp("GSF_ID"));
+        etAdId.setText(PrivacyManager.getRandomProp("AdvertisingId"));
+        etCountry.setText(PrivacyManager.getRandomProp("ISO3166"));
+        etSubscriber.setText(PrivacyManager.getRandomProp("SubscriberId"));
+        etSSID.setText(PrivacyManager.getRandomProp("SSID"));
+    }
 
-	private void clear() {
-		final EditText[] edits = new EditText[] { etSerial, etLat, etLon, etAlt, etMac, etIP, etImei, etPhone, etId,
-				etGsfId, etAdId, etMcc, etMnc, etCountry, etOperator, etIccId, etCid, etLac, etSubscriber, etSSID, etUa };
-		final CheckBox[] boxes = new CheckBox[] { cbSerial, cbLat, cbLon, cbAlt, cbMac, cbImei, cbPhone, cbId, cbGsfId,
-				cbAdId, cbCountry, cbSubscriber, cbSSID };
+    private void clear() {
+        final EditText[] edits = new EditText[]{etSerial, etLat, etLon, etAlt, etMac, etIP, etImei, etPhone, etId,
+                etGsfId, etAdId, etMcc, etMnc, etCountry, etOperator, etIccId, etCid, etLac, etSubscriber, etSSID, etUa};
+        final CheckBox[] boxes = new CheckBox[]{cbSerial, cbLat, cbLon, cbAlt, cbMac, cbImei, cbPhone, cbId, cbGsfId,
+                cbAdId, cbCountry, cbSubscriber, cbSSID};
 
-		for (EditText edit : edits)
-			edit.setText("");
-		etSearch.setText("");
+        for (EditText edit : edits)
+            edit.setText("");
+        etSearch.setText("");
 
-		for (CheckBox box : boxes)
-			box.setChecked(false);
-	}
+        for (CheckBox box : boxes)
+            box.setChecked(false);
+    }
 
-	private void search() {
-		try {
-			String search = etSearch.getText().toString();
-			final List<Address> listAddress = new Geocoder(ActivitySettings.this).getFromLocationName(search, 1);
-			if (listAddress.size() > 0) {
-				Address address = listAddress.get(0);
+    private void search() {
+        try {
+            String search = etSearch.getText().toString();
+            final List<Address> listAddress = new Geocoder(ActivitySettings.this).getFromLocationName(search, 1);
+            if (listAddress.size() > 0) {
+                Address address = listAddress.get(0);
 
-				// Get coordinates
-				if (address.hasLatitude()) {
-					cbLat.setChecked(false);
-					etLat.setText(Double.toString(address.getLatitude()));
-				}
-				if (address.hasLongitude()) {
-					cbLon.setChecked(false);
-					etLon.setText(Double.toString(address.getLongitude()));
-				}
+                // Get coordinates
+                if (address.hasLatitude()) {
+                    cbLat.setChecked(false);
+                    etLat.setText(Double.toString(address.getLatitude()));
+                }
+                if (address.hasLongitude()) {
+                    cbLon.setChecked(false);
+                    etLon.setText(Double.toString(address.getLongitude()));
+                }
 
-				// Get address
-				StringBuilder sb = new StringBuilder();
-				for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
-					if (i != 0)
-						sb.append(", ");
-					sb.append(address.getAddressLine(i));
-				}
-				etSearch.setText(sb.toString());
-			}
-		} catch (Throwable ex) {
-			Toast.makeText(ActivitySettings.this, ex.getMessage(), Toast.LENGTH_LONG).show();
-		}
-	}
+                // Get address
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                    if (i != 0)
+                        sb.append(", ");
+                    sb.append(address.getAddressLine(i));
+                }
+                etSearch.setText(sb.toString());
+            }
+        } catch (Throwable ex) {
+            Toast.makeText(ActivitySettings.this, ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 
 //	private void flush() {
 //		Intent flushIntent = new Intent(UpdateService.cFlush);
@@ -630,8 +438,8 @@ public class ActivitySettings extends AppCompatActivity implements OnCheckedChan
 //		Toast.makeText(ActivitySettings.this, getString(R.string.msg_done), Toast.LENGTH_LONG).show();
 //	}
 
-	@SuppressLint("DefaultLocale")
-	private void optionSave() {
+    @SuppressLint("DefaultLocale")
+    private void optionSave() {
 //		if (uid == userId) {
 //			// Global settings
 //			PrivacyManager.setSetting(uid, PrivacyManager.cSettingUsage, Boolean.toString(cbUsage.isChecked()));
@@ -648,7 +456,7 @@ public class ActivitySettings extends AppCompatActivity implements OnCheckedChan
 //			PrivacyManager.setSetting(uid, PrivacyManager.cSettingConfidence, etConfidence.getText().toString());
 //		}
 
-		// Quirks
+        // Quirks
 //		List<String> listQuirks = Arrays
 //				.asList(etQuirks.getText().toString().toLowerCase().replace(" ", "").split(","));
 //		PrivacyManager.setSetting(uid, PrivacyManager.cSettingFreeze, Boolean.toString(listQuirks.contains("freeze")));
@@ -758,9 +566,9 @@ public class ActivitySettings extends AppCompatActivity implements OnCheckedChan
 //		PrivacyManager.setSetting(uid, PrivacyManager.cSettingSSID, getValue(cbSSID, etSSID));
 //		PrivacyManager.setSetting(uid, PrivacyManager.cSettingUa, getValue(null, etUa));
 
-		finish();
+        finish();
 
-		// Refresh view
+        // Refresh view
 //		if (uid == userId) {
 //			Intent intent = new Intent(ActivitySettings.this, ActivityMain.class);
 //			startActivity(intent);
@@ -770,12 +578,12 @@ public class ActivitySettings extends AppCompatActivity implements OnCheckedChan
 //			intent.putExtra(ActivityApp.cAction, ActivityApp.cActionRefresh);
 //			startActivity(intent);
 //		}
-	}
+    }
 
-	private static String getValue(CheckBox check, EditText edit) {
-		if (check != null && check.isChecked())
-			return PrivacyManager.cValueRandom;
-		String value = edit.getText().toString().trim();
-		return ("".equals(value) ? null : value);
-	}
+    private static String getValue(CheckBox check, EditText edit) {
+        if (check != null && check.isChecked())
+            return PrivacyManager.cValueRandom;
+        String value = edit.getText().toString().trim();
+        return ("".equals(value) ? null : value);
+    }
 }

@@ -77,8 +77,8 @@ public class XRuntime extends XHook {
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || Process.myUid() != Process.SYSTEM_UID)
 				if (param.args.length > 0) {
 					String libName = (String) param.args[0];
-					if (isRestrictedExtra(param, libName))
-						param.setThrowable(new UnsatisfiedLinkError("XPrivacy"));
+					//if (isRestrictedExtra(param, libName))
+				//		param.setThrowable(new UnsatisfiedLinkError("XPrivacy"));
 				}
 
 			break;
