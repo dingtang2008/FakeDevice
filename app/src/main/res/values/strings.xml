@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">FakeDevice</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="msg_settings_specific">Check marks and values take precedence over global check marks and values; empty check boxes and values do not take precedence</string>
+    <string name="settings_serial">序列号</string>
+    <string name="settings_lat">纬度</string>
+    <string name="settings_lon">经度</string>
+    <string name="settings_alt">海拔</string>
+    <string name="settings_mac">MAC 地址</string>
+    <string name="settings_ip">IP 地址</string>
+    <string name="settings_phone">电话号码</string>
+    <string name="settings_id">安卓ID</string>
+    <string name="settings_adid">广告ID</string>
+    <string name="settings_country">国家</string>
+    <string name="settings_operator">运营商</string>
+    <string name="settings_subscriber">IMSI</string>
+    <string name="settings_ua">用户代理</string>
+    <string name="settings_general">一般设置</string>
+    <string name="settings_fake_data">模拟信息</string>
+    <string name="settings_notify">通知栏提示</string>
+    <string name="settings_ondemand">按需限制权限</string>
+    <string name="settings_blacklist">黑名单帐户，应用程序和联系人</string>
+    <string name="settings_log">调试日志（需要重启）</string>
+    <string name="settings_expert">专家模式</string>
+    <string name="settings_confidence">最大采样置信区间</string>
+    <string name="settings_experimental">实验性功能 (需要重启)</string>
+    <string name="settings_https">使用安全连接(https)</string>
+    <string name="settings_syscomponents">限制安卓系统组件</string>
+    <string name="settings_usagedata">显示应用权限使用情况</string>
+    <string name="settings_parameters">显示使用情况参数</string>
+    <string name="settings_values">Show values of usage data</string>
+    <string name="settings_cid">GSM Cell ID</string>
+    <string name="settings_lac">GSM LAC</string>
+    <string name="settings_quirks">Quirks</string>
+    <string name="settings_aosp">AOSP模式 (需要重新启动)</string>
+    <string name="settings_gsfid" translatable="false">GSF ID</string>
+    <string name="settings_mcc" translatable="false">MCC</string>
+    <string name="settings_mnc" translatable="false">MNC</string>
+    <string name="settings_iccid" translatable="false">ICC ID</string>
+    <string name="settings_ssid" translatable="false">SSID</string>
+    <string name="settings_imei" translatable="false">IMEI</string>
+
+    <string name="msg_random_boot">设备启动时重新生成随机数值</string>
+    <string name="msg_random_now">生成随机数值</string>
+    <string name="msg_random_access">访问时随机生成数值</string>
+
+    <string name="menu_flush">清除缓存</string>
+    <string name="menu_clear_db">清除全部数据</string>
+    <string name="menu_clear">清除所有权限限制</string>
+
+    <string name="menu_settings">设置</string>
+</resources>
